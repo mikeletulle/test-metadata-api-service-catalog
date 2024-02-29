@@ -4,7 +4,7 @@ function activateButtons(){
     $("#sandBtn").click(sandLogin);
 }
 
-var apiVersion = 'v37.0',
+var apiVersion = 'v58.0',
     loginUrl = 'https://login.salesforce.com/',
     proxyURL = '/proxy/',
     clientId = "",
