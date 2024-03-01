@@ -157,11 +157,10 @@ function updateItems(){
 
 
     const xhr = new XMLHttpRequest();
-      xhr.setRequestHeader(
+      xhr.open("GET", url);
       xhr.setRequestHeader('Accept', 'application/json');
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.setRequestHeader('Authorization','Bearer '+$.cookie("AccToken"));
-      xhr.open("GET", url);
       xhr.send();
       xhr.responseType = "json";
       xhr.onload = () => {
