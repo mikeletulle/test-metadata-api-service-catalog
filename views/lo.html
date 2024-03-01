@@ -110,7 +110,7 @@ function createLOComponent(type, subjectId) {
 function updateItems(){
   console.log("updating catalog items");
   
-  const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
+  const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef';
 
   const xhr = new XMLHttpRequest();
     xhr.open("PATCH", url);
@@ -118,7 +118,7 @@ function updateItems(){
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Authorization','Bearer '+$.cookie("AccToken"));
     const body = JSON.stringify({
-      body: "{'IsFeatured','true'}"
+      body: "{'IsFeatured','true'},{'Id','0j2Hr000000k9uOIAQ'} "
     });
     xhr.send(body);
     xhr.responseType = "json";
