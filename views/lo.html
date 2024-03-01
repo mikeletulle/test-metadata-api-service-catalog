@@ -109,52 +109,34 @@ function createLOComponent(type, subjectId) {
 }
 function updateItems(){
   console.log("updating catalog items");
-  const http = require("https");
+  
+  const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
 
-  const url = 'https://reqbin.com/echo/patch/json';
+  const xhr = new XMLHttpRequest();
+    xhr.open("PATCH", url);
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization','Bearer '+$.cookie("AccToken"));
+    const body = JSON.stringify({
+      body: "{'IsFeatured','true'}"
+    });
+    xhr.send(body);
+    xhr.responseType = "json";
+    xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.response);
+      } else {
+        console.log(`Error: ${xhr.status}`);
+      }
+    };
 
-  const options = {
-      method: 'PATCH',
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-  };
-
-  const data = `{
-    "User": {
-      "Id": 12345,
-      "Name": "John Smith"
-    }
-  }`;
-
-  let result = '';
-  const req = http.request(url, options, (res) => {
-      console.log(res.statusCode);
-
-      res.setEncoding('utf8');
-      res.on('data', (chunk) => {
-          result += chunk;
-      });
-
-      res.on('end', () => {
-          console.log(result);
-      });
-  });
-
-  req.on('error', (e) => {
-      console.error(e);
-  });
-
-  req.write(data);
-  req.end();
   }
 
 
 
   function getCatalogItems(){
 
-
     const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
-
 
     const xhr = new XMLHttpRequest();
       xhr.open("GET", url);
