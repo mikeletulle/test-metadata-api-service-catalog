@@ -39,7 +39,7 @@
       <p>
         New Name:<input type="text" id="catItemName"></input>
       </p>
-      <p><a id="getBtn" role="button" style="margin-right:40px" class="btn btn-primary btn-lg" onclick="updateItem()">Update</a></p>
+      <p><a id="getBtn" role="button" style="margin-right:40px" class="btn btn-primary btn-lg" onclick="getCatalogItems()">Get Catalog Items</a><a id="updateBtn" role="button" class="btn btn-primary btn-lg" onclick="updateItems()">Update</a></p>
     </div>
 	<div id="lexcontainer" > 
 	</div>
@@ -107,9 +107,8 @@ function createLOComponent(type, subjectId) {
     $Lightning.createComponent($.cookie("componentName"), {type: type, subjectId: subjectId}, "lexcontainer");
   });
 }
-
 function getCatalogItems(){
-  console.log("getting items");
+console.log("getting catalog items");
 
 }
 </script>
