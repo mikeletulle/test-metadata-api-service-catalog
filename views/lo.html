@@ -151,35 +151,25 @@ function updateItems(){
 
 
   function getCatalogItems(){
-    const http = require("https");
+
 
     const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
 
-    const options = {
-        'Accept': 'application/json"',
-        'Authorization': 'Bearer '+$.cookie("AccToken"),
-    };
+      const response = await fetch(url, {
+          headers: {
+              'Accept': 'application/json"',
+              'Authorization': 'Bearer '+$.cookie("AccToken")',
+          },
+      });
 
-    let result = '';
-    const req = http.request(url, options, (res) => {
-        console.log(res.statusCode);
+      const text = await response.text();
 
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-            result += chunk;
-        });
+      console.log(text);
 
-        res.on('end', () => {
-            console.log(result);
-        });
-    });
 
-    req.on('error', (e) => {
-        console.error(e);
-    });
+    const http = require("https");
 
-    req.end();
-  }
+    }
 
 </script>
 
