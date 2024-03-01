@@ -32,10 +32,19 @@
        
       </div>
     </nav> 
-
+    <div>
+      <p>
+        ID:<input type="text" id="catItemId"></input>
+      </p>
+      <p>
+        New Name:<input type="text" id="catItemName"></input>
+      </p>
+      <p><a id="getBtn" role="button" style="margin-right:40px" class="btn btn-primary btn-lg" onclick="updateItem()">Update</a></p>
+    </div>
 	<div id="lexcontainer" > 
 	</div>
-  
+  <div id="catcontainer" > 
+	</div>
          
   </body> 
   <script src="https://mletulle-240119-490-demo.my.site.com/lightning/lightning.out.js"></script>
@@ -99,6 +108,10 @@ function createLOComponent(type, subjectId) {
   });
 }
 
+function getCatalogItems(){
+  console.log("getting items");
+
+}
 </script>
 
  <style type="text/css"> 
@@ -108,5 +121,7 @@ function createLOComponent(type, subjectId) {
 	.slds-scope:not(html), .slds-scope body, .slds-media__body, .forceChatterStyle .cuf-preamble, .cuf-subPreamble .slds-text-body--small, .slds-post__footer {
 		font-size: 1.0rem !important; 
 	}	 
+
+ 
  </style>
 </html> 
