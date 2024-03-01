@@ -155,19 +155,20 @@ function updateItems(){
 
     const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
 
-      const response = await fetch(url, {
-          headers: {
-              'Accept': 'application/json"',
-              'Authorization': 'Bearer '+$.cookie("AccToken")',
-          },
-      });
-
-      const text = await response.text();
-
-      console.log(text);
-
-
-    const http = require("https");
+    const xhr = new XMLHttpRequest();
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('Authorization','Bearer '+$.cookie("AccToken"));
+      xhr.open("GET", url);
+      xhr.send();
+      xhr.responseType = "json";
+      xhr.onload = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.response);
+        } else {
+          console.log(`Error: ${xhr.status}`);
+        }
+      };
 
     }
 
