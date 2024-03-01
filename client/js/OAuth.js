@@ -24,7 +24,7 @@ function getConfigAndLogin(call){
         console.dir(data);
 
         clientId = data.clientId,
-        clientSecret = data/clientSecret;
+        clientSecret = data.clientSecret;
         redirectURI = window.location.origin + data.callback;
         loginUrl = data.loginUrl;
         appName = data.appName;

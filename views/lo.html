@@ -34,10 +34,10 @@
     </nav> 
     <div>
       <p>
-        ID:<input type="text" id="catItemId"></input>
+        ID: <input type="text" id="catItemId"></input>
       </p>
       <p>
-        New Name:<input type="text" id="catItemName"></input>
+        New Name: <input type="text" id="catItemName"></input>
       </p>
       <p><a id="getBtn" role="button" style="margin-right:40px" class="btn btn-primary btn-lg" onclick="getCatalogItems()">Get Catalog Items</a><a id="updateBtn" role="button" class="btn btn-primary btn-lg" onclick="updateItems()">Update</a></p>
     </div>
@@ -107,10 +107,80 @@ function createLOComponent(type, subjectId) {
     $Lightning.createComponent($.cookie("componentName"), {type: type, subjectId: subjectId}, "lexcontainer");
   });
 }
-function getCatalogItems(){
-console.log("getting catalog items");
+function updateItems(){
+  console.log("updating catalog items");
+  const http = require("https");
 
-}
+  const url = 'https://reqbin.com/echo/patch/json';
+
+  const options = {
+      method: 'PATCH',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  };
+
+  const data = `{
+    "User": {
+      "Id": 12345,
+      "Name": "John Smith"
+    }
+  }`;
+
+  let result = '';
+  const req = http.request(url, options, (res) => {
+      console.log(res.statusCode);
+
+      res.setEncoding('utf8');
+      res.on('data', (chunk) => {
+          result += chunk;
+      });
+
+      res.on('end', () => {
+          console.log(result);
+      });
+  });
+
+  req.on('error', (e) => {
+      console.error(e);
+  });
+
+  req.write(data);
+  req.end();
+  }
+
+
+
+  function getCatalogItems(){
+    const http = require("https");
+
+    const url = 'https://mletulle-240119-490-demo.my.salesforce.com/services/data/v58.0/sobjects/SvcCatalogItemDef/0j2Hr000000k9uOIAQ';
+
+    const options = {
+        'Accept': 'application/json"',
+        'Authorization': 'Bearer '+$.cookie("AccToken"),
+    };
+
+    let result = '';
+    const req = http.request(url, options, (res) => {
+        console.log(res.statusCode);
+
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => {
+            result += chunk;
+        });
+
+        res.on('end', () => {
+            console.log(result);
+        });
+    });
+
+    req.on('error', (e) => {
+        console.error(e);
+    });
+
+    req.end();
+  }
+
 </script>
 
  <style type="text/css"> 
