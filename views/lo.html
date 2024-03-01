@@ -116,10 +116,11 @@ function updateItems(){
     xhr.open("PATCH", url);
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Authorization','OAuth '+$.cookie("AccToken"));
-    const body = JSON.stringify({
-      body: "{'IsFeatured':'true'}"
-    });
+    xhr.setRequestHeader('Authorization','Bearer '+$.cookie("AccToken"));
+    //const body = JSON.stringify({
+     // body: "{'IsFeatured':'true'}"
+    //});
+    const body ='{"IsFeatured":true}';
     xhr.send(body);
     xhr.responseType = "json";
     xhr.onload = () => {
